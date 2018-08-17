@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html onselectstart="return false">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<meta name="keywords" content="关键词,关键字" />
+		<meta name="description" content="描述文字" />
+		<title>思维翻牌——陈伟鹏O(∩_∩)O哈哈~</title>
+		<style type="text/css">
+			*{margin: 0px;padding: 0px;}
+			body{background: #000;overflow: hidden;}
+			.wrap{
+				width: 133px;height: 200px;
+				margin: 200px auto;position: relative;
+				transform-style: preserve-3d;/*3D风格*/
+				/*perspective: 700px;*//*不是把脸贴在屏幕上看-景深-也就是距离多少来看*/
+				transform:perspective(700px) rotateX(-15deg);
+			}
+			
+			.wrap img{
+				position: absolute;left:0 ;top: 0;width: 120px;height: 180px;
+				border-radius: 6px;box-shadow: 0px 0px 22px #FFFFFF;
+				-webkit-box-reflect: below 5px -webkit-linear-gradient(top,rgba(0,0,0,0) 50%,rgba(0,0,0,0.5));
+			}
+			.wrap p{width: 1200px;height: 1200px;position: absolute;
+			border-radius: 100%;left: 50%;top: 50%;background: #FFFFFF;
+			margin-top: -518px;margin-left: -600px;transform: rotateX(90deg);
+			background: -webkit-radial-gradient(center center,600px 600px,rgba(50,50,50,1),rgba(0,0,0,0));
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<img src="images/1.jpg" />
+			<img src="images/2.jpg" />
+			<img src="images/3.jpg" />
+			<img src="images/4.jpg" />
+			<img src="images/5.jpg" />
+			<img src="images/6.jpg" />
+			<img src="images/7.jpg" />
+			<img src="images/8.jpg" />
+			<img src="images/9.jpg" />
+			<img src="images/10.jpg" />
+			<img src="images/11.jpg" />
+			<p></p>
+		</div>
+		<script type="text/javascript" src="js/jquery-2.1.3.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				var oL =$(".wrap img").size();
+				var Deg = 360/oL;
+				
+				var rox = -15;
+				var roy = 0;
+				var x_ =0;
+				var y_=0;
+				$(".wrap img").each(function(i){//遍历 接下来所有的图片都执行这个方法
+					$(this).css({
+						transition:"1s "+(oL-i)*0.15+"s",//注意1s之后加一个空格
+						"transform":"rotateY("+Deg*i+"deg) translateZ(350px)"
+					}).attr("ondragstart","return false");
+					
+					
+				});
+				
+				$(document).mousedown(function(ev){
+					console.log("鼠标按下了");
+					x_ = ev.clientX;
+					y_ = ev.clientY;
+					console.log("鼠标按下了"+x_+":"+y_);
+					$(this).mousemove(function(ev){
+						console.log("鼠标移动鼠标按下了"+x_+":"+y_);
+						console.log("鼠标移动");
+						var x = ev.clientX;
+						var y = ev.clientY;
+						console.log("鼠标移动："+x+":"+y);
+						var xN=x-x_;
+						var yN=y-y_;
+						console.log("间隔："+xN+":"+yN);
+						roy += xN*0.2;
+						rox -= yN*0.2;
+						$(".wrap").css({							
+							"transform":"perspective(700px) rotateX("+rox+"deg) rotateY("+roy+"deg)"
+						});
+						x_ = ev.clientX;
+						y_ = ev.clientY;
+						console.log(rox+":"+roy);
+						console.log(x+":"+y);
+					});
+				}).mouseup(function(){
+						console.log("鼠标抬起了")
+						$(this).unbind("mousemove");
+				});
+			});
+			
+			
+		</script>
+	</body>
+</html>

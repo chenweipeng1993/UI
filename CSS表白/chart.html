@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<meta name="keywords" content="关键词,关键字" />
+		<meta name="description" content="描述文字" />
+		<title>Java开发ERP报表系统——陈伟鹏O(∩_∩)O哈哈~</title>
+		<style type="text/css">
+			*{margin: 0px;padding: 0px;}
+			body{background: #966;font-size: 12px;font-family: "楷体";color: #CCCCCC;}
+			/*S chart*/
+			.chart{width:400px;height: 200px;margin: 50px auto;}
+			.chart .c_text{font-size: 24px;font-family: "楷体";color: #000000;}
+			/*E chart*/
+			
+			/*S content*/
+			.content{width: 100%;height: 370px;background: gray;}
+		</style>
+		<link rel="stylesheet" href="css/animate.css" />
+	</head>
+	<body>
+		<!--S chart-->
+		<div class="chart">
+			<span class="c_text">查看不同类型的统计报表</span>
+			<select class="c_select" onchange="change_chart(this)">
+				<option value="line">曲线图</option>
+				<option value="area2d">区域图</option>
+				<option value="doughnut3d">饼图3D图</option>
+				<option value="doughnut2d">饼图2D图</option>
+				<option value="pareto3d">统计3D图</option>
+				<option value="pareto2d">统计2D图</option>
+			</select>
+		</div>
+		<!--E chart-->
+		<div class="content animated flip" id="chartContainer">
+			
+		</div>
+		<script type="text/javascript" src="js/jquery-2.1.3.js" ></script>
+		<script type="text/javascript" src="js/fusioncharts.js" ></script>
+		<script type="text/javascript" src="js/fusioncharts.charts.js" ></script>
+		<script type="text/javascript" src="js/themes/fusioncharts.theme.fint.js" ></script>
+		<script type="text/javascript">
+			$(function(){
+				loadChart("line");//column2d
+			});
+			//选择下拉列表的时候
+			function change_chart(obj){
+//				alert(1);
+				//先移除默认样式
+				$(".content").removeClass("animated flip");
+				//添加样式//不能直接addClass-速度太快-浏览器接受不了-O(∩_∩)O哈哈~
+				//800毫秒只执行一次
+				setTimeout(function(){
+					$(".content").addClass("animated flip");
+				},800);
+				
+				//拿到对象的值
+				loadChart(obj.value);
+			}
+			function loadChart(type){
+			FusionCharts.ready(function(){
+			      var revenueChart = new FusionCharts({
+			        "type": type,
+			        "renderAt": "chartContainer",
+			        "width": "100%",
+			        "height": "370",
+			        "dataFormat": "json",
+			        "dataSource": {
+			          "chart": {
+			              "caption": "陈伟鹏的第一个报表",
+			              "subCaption": "思密达",
+			              "xAxisName": "Month",
+			              "yAxisName": "Revenues (In USD)",
+			              "theme": "fint"
+			           },
+			          "data": [
+			              {
+			                 "label": "Jan",
+			                 "value": "420000"
+			              },
+			              {
+			                 "label": "Feb",
+			                 "value": "810000"
+			              },
+			              {
+			                 "label": "Mar",
+			                 "value": "720000"
+			              },
+			              {
+			                 "label": "Apr",
+			                 "value": "550000"
+			              },
+			              {
+			                 "label": "May",
+			                 "value": "910000"
+			              },
+			              {
+			                 "label": "Jun",
+			                 "value": "510000"
+			              },
+			              {
+			                 "label": "Jul",
+			                 "value": "680000"
+			              },
+			              {
+			                 "label": "Aug",
+			                 "value": "620000"
+			              },
+			              {
+			                 "label": "Sep",
+			                 "value": "610000"
+			              },
+			              {
+			                 "label": "Oct",
+			                 "value": "490000"
+			              },
+			              {
+			                 "label": "Nov",
+			                 "value": "900000"
+			              },
+			              {
+			                 "label": "Dec",
+			                 "value": "730000"
+			              }
+			           ]
+			        }
+			    });
+			
+			    revenueChart.render();
+			})
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<meta name="keywords" content="关键词,关键字" />
+		<meta name="description" content="描述文字" />
+		<title>个人地图-百度地图——陈伟鹏O(∩_∩)O哈哈~</title>
+		<!--css,js-->
+		<!--css:层叠样式表，一件美丽的外衣-->
+		<style type="text/css">
+			*{margin: 0px;padding: 0px;}
+			body{background: url("MyMap/bg.png");font-size: 12px;font-family: "微软雅黑";color: #666}
+			.all{width: 100%;background: #fff;}
+			/*类样式以.开始*/
+			.top{
+				width: 1000px;
+				height: 66px;
+				/*background: #CCCCCC;*/
+				margin: 0 auto;
+			}
+			.top .logo{
+				float: left;
+			}
+			.top .qq{
+				float: right;
+				height: 66px;
+				/*border: 1px solid red;*/
+				line-height: 66px;
+				font-size: 22px;
+				font-weight: bold;
+			}
+			.top .qq span{color: red;}
+			
+			.myMap{
+				width: 1000px;
+				/*height: 600px;*/
+				background: #fff; 
+				margin: 50px auto;border-radius: 6px;
+				box-shadow: 1px 1px 5px #000000;
+				font-size: 14px;padding: 30px 20px 30px 30px;
+			}
+			
+			.myMap h2{font-size: 30px;font-weight: 300;margin-bottom: 20px;}
+			
+			.myMap .time{}
+			.myMap .time span{color: #999;}
+			.myMap .tel{font-size: 44px;font-weight: bold;color: red;}
+			.myMap .map_show{width: 1000px;height: 500px;background: #ccccff;}
+			.myMap .address{line-height: 24px;margin-bottom: 20px;}
+		</style>
+	</head>
+	<body>
+		<!--div 盒子,容器-->
+		<!--以class=“自定义名称”称之为 类样式-->
+		<div class="all">
+			<div class="top">
+				<div class="logo">
+					<a href="#">
+						<!--img图片标签：alt 描述 ，src 路径，width，height-->
+						<img src="logo.png" alt="大傻逼" width="215" height="66"/>
+					</a>
+				</div>
+				<div class="qq">报名咨询电话：<span>110</span></div>
+			</div>
+		</div>
+		<div class="myMap">
+			<h2>大傻X在哪儿？</h2>
+			<p class="time">花钱上课天经地义<span>（但是有视频不看更加二）</span></p>
+			<p class="tel">客服电话：110</p>
+			<h3>学院-无名</h3>
+			<p class="address">
+				地址：中国江苏省南京市<br/>
+				电话：110<br/>
+				Q  Q：10086
+			</p>
+			<div class="map_show" id="map"></div>
+		</div>
+		<!--引用百度地图API-->
+   <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=kr0Bg9P01ajC81nFyxqhNZjU"></script>
+    <script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+      createMap();//创建地图
+      setMapEvent();//设置地图事件
+      addMapControl();//向地图添加控件
+      addMapOverlay();//向地图添加覆盖物
+    }
+    function createMap(){ 
+      map = new BMap.Map("map"); 
+      map.centerAndZoom(new BMap.Point(118.761407,32.213166),15);
+    }
+    function setMapEvent(){
+      map.enableScrollWheelZoom();
+      map.enableKeyboard();
+      map.enableDragging();
+      map.enableDoubleClickZoom()
+    }
+    function addClickHandler(target,window){
+      target.addEventListener("click",function(){
+        target.openInfoWindow(window);
+      });
+    }
+    function addMapOverlay(){
+      var markers = [
+        {content:"南京钢铁",title:"南京钢铁",imageOffset: {width:-23,height:3},position:{lat:32.208217,lng:118.757023}}
+      ];
+      for(var index = 0; index < markers.length; index++ ){
+        var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
+        var marker = new BMap.Marker(point,{icon:new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",new BMap.Size(20,25),{
+          imageOffset: new BMap.Size(markers[index].imageOffset.width,markers[index].imageOffset.height)
+        })});
+        var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
+        var opts = {
+          width: 200,
+          title: markers[index].title,
+          enableMessage: false
+        };
+        var infoWindow = new BMap.InfoWindow(markers[index].content,opts);
+        marker.setLabel(label);
+        addClickHandler(marker,infoWindow);
+        map.addOverlay(marker);
+      };
+    }
+    //向地图添加控件
+    function addMapControl(){
+      var scaleControl = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+      scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
+      map.addControl(scaleControl);
+      var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+      map.addControl(navControl);
+      var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:true});
+      map.addControl(overviewControl);
+    }
+    var map;
+      initMap();
+  </script>
+	</body>
+</html>

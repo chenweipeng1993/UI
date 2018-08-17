@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<meta name="keywords" content="关键词" />
+		<meta name="description" content="介绍" />
+		<title>Java结合Ajax实现多文件带进度条上传系统 -陈伟鹏</title>
+		<style type="text/css">
+			*{padding: 0;margin: 0;}
+			.box{width: 960px;height: 600px;background: gray;margin:0 auto;}
+			h1{text-shadow: 2px 5px 10px #111;text-align: center;}
+			#fileup{display: none;}
+			.box .upload{display: block;
+				width: 100px;
+				height: 40px;
+				background: #FFFF00;
+				text-align: center;
+				line-height: 40px;
+				text-decoration: none;
+				margin-left:30px ;
+			}
+			#imgbox li{
+				list-style: none;
+				float: left;
+				margin-left: 22px;
+				margin-top: 22px;
+				transition: transform 1s ease;
+			}
+			#imgbox li:hover{
+				transform: scale(2);
+				transition: transform 1s ease;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<h1>Ajax实现多文件带进度条上传</h1>
+			<input type="file" multiple="multiple" id="fileup" accept="image/*"/>
+			<a href="javascript:void(0);" onclick="openBrow();" class="upload" onchange="uploadfile();">上传图片</a>
+			<ul id="imgbox">
+				<!--<li><img src=""/></li>-->
+			</ul>
+		</div>
+		<script type="text/javascript">
+			//触发a链接点击事件
+			function openBrow(){
+				var fileup = document.getElementById("fileup");
+				fileup.click();
+			};
+			function uploadFile(){
+				//创建ajax对象 微软公司的
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST","fileup.do",true);
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState==4 &&xhr.status==200){
+						
+					}
+				};
+				xhr.send();
+			};
+		</script>
+	</body>
+</html>

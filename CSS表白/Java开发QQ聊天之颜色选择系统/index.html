@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<meta name="keywords" content="关键词" />
+		<meta name="description" content="介绍" />
+		<title>开发QQ聊天之颜色选择系统</title>
+		<style type="text/css">
+			*{margin: 0px;padding: 0px;}
+			body{background: linear-gradient(red,black);height: 740px;}
+			#box{width: 600px;height: 130px;border: 1px solid red;margin: 88px auto;}
+			#chat{width: 580px;height: 100px;border: 1px solid #666; padding: 0 10px;outline: none;}
+			.but{float: right;}
+			
+			#sel_color{width: 280px;height: 270px;border: 1px solid #DDCCB7; position: absolute;left: 40%;top: 200px;display: none;}
+			#sel_color h3{font-size: 14px;font-weight: bold;height: 30px;line-height: 30px;text-align: center; cursor: move;}
+			#sel_color h3 img{float: right;cursor: pointer;}
+			
+			ul li{list-style: none;width: 24px;height: 24px;float: right;margin: 5px;border: 1px solid#ff8080;}
+			ul{width: 260px;height: 220px;border: 1px solid gray;margin: 0 auto;background-color: #1DB1B7;}
+			
+			#windowLock{
+				width: 100%;height: 100%;
+				position: fixed;
+				background: white;
+				top: 0;left: 0;
+				opacity: 0;filter: alpha(opacity=0);
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="chat" contenteditable="true"></div>
+			<img src="images/but.png" class="but"/>
+		</div>
+		<div id="sel_color">
+			
+			<h3><img class="close" src="images/close.png" />颜色选择器</h3>
+			<ul>
+				<li style="background-color: red;"></li>
+				<li style="background-color: red;"></li>
+				<li style="background-color: red;"></li>
+				<li style="background-color: red;"></li>
+				<li style="background-color: red;"></li>
+				<li style="background-color: red;"></li>
+				<li style="background-color: red;"></li>
+				<li style="background-color: black;"></li>
+				<li style="background-color: black;"></li>
+				<li style="background-color: black;"></li>
+				<li style="background-color: black;"></li>
+				<li style="background-color: black;"></li>
+				<li style="background-color: black;"></li>
+				<li style="background-color: black;"></li>
+				<li style="background-color: white;"></li>
+				<li style="background-color: white;"></li>
+				<li style="background-color: white;"></li>
+				<li style="background-color: white;"></li>
+				<li style="background-color: white;"></li>
+				<li style="background-color: white;"></li>
+				<li style="background-color: white;"></li>
+				
+			</ul>
+			<div id="windowLock"></div>
+		</div>
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#box .but").click(function(){
+					$("#sel_color").show("slow");
+					$("#windowLock").show();
+				});
+				//点击关闭按钮
+				$("#sel_color .close").click(function(){
+					$("#sel_color").hide("slow");
+					$("#windowLock").show();
+					$("#chat").focus();
+				});
+			});
+		</script>
+	</body>
+</html>

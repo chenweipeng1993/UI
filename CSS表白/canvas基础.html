@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="keywords" content="关键字，关键词" />
+		<meta name="description" content="描述文字" />
+		<title>canvas基础-O(∩_∩)O哈哈~</title>
+		<style type="text/css">
+			*{margin: 0px;padding: 0px;}
+			div{
+				width: 600px;
+				height: 600px;
+				margin: 20px auto;
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<canvas id="canvas" width="600" height="600"></canvas>
+		</div>
+		<script type="text/javascript">
+			//canvas绘画的方式
+			//1 获取canvas对象
+			var canvas = document.getElementById("canvas");
+			//2 获取绘画环境
+			var ctx = canvas.getContext("2d");
+			//alert(ctx);
+			//3 开始绘画
+			//4 定义api
+			// 颜色
+			ctx.strokeStyle="red";
+			// 起点
+			ctx.moveTo(0,10);
+			// 终点
+			ctx.lineTo(100,100);
+			//5 喷墨
+			ctx.stroke();
+			//border :1px solid red;
+			ctx.fillRect(200,200,200,200);//x y w h
+			// 文字的添加
+			ctx.fillStyle="red";
+			ctx.font="600 24px 微软雅黑";
+			ctx.fillText("我是陈伟鹏，我爱你们！！！",400,400);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<meta name="keywords" content="关键词,关键字" />
+		<meta name="description" content="描述文字" />
+		<title>电影预告炫酷动态展示-陈伟鹏O(∩_∩)O哈哈~</title>
+		<style type="text/css">\
+			*{padding:0px;margin: 0px;}
+			body{overflow: hidden;}
+			#title{width: 600px;border: 1px solid red; margin: 80px auto;}
+			#box{width: 100%;height: 211px;background: :url("img/bj.jpg");padding-top: 35px;}
+			#img{width: 100%;height: 175px;border: 1px solid red;position: relative;}
+			
+			#img ul{}
+			#img ul li{float: left;list-style: none;position: relative;}
+			#bigImg{width: 380px; height: 350px; border: 5px solid #CCCCCC;display: none;position: absolute;
+			z-index: 2;/*每个li都都定位了，2》0 就在上面*/}
+		</style>
+	</head>
+	<body>
+		<div id="title">
+			<h1>电影预告炫酷动态展示</h1>
+		</div>
+		<div id="box">
+			<div id="img">
+				<ul>
+					<li>
+						<img src="img/1.gif" width="254" height="175" />
+						<div id="bigImg">
+							<img src="img/1.gif" width="380" height="350"/>
+						</div>
+					</li>
+					<li>
+						<img src="img/2.gif" width="254" height="175" />
+						<div id="bigImg">
+							<img src="img/2.gif" width="380" height="350"/>
+						</div>
+					</li>
+					<li>
+						<img src="img/3.gif" width="254" height="175" />
+						<div id="bigImg">
+							<img src="img/3.gif" width="380" height="350"/>
+						</div>
+					</li>
+					<li>
+						<img src="img/4.gif" width="254" height="175" />
+						<div id="bigImg">
+							<img src="img/4.gif" width="380" height="350"/>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--引入js文件-->
+		<script type="text/javascript" src="js/jquery-2.1.3.js"></script>
+		<script>
+//			alert($);
+			$("#img ul li").hover(function(){//鼠标移入
+				$(this).children("#bigImg").show();
+				clearInterval(time);
+			},function(){//鼠标离开
+				$(this).children("#bigImg").hide();
+				autoplay();
+			});
+			
+			$("#img ul li").mousemove(function(e){
+				var e = e||window.event;
+				var x = e.clientX||e.pageX;//获取鼠标的X值
+				var y = e.clientY||e.pageY;
+				var _left = $(this).offset().left;//获取li离浏览器左边的偏移量
+				var _top = $(this).offset().top;//获取li离浏览器的距离
+				var  b_left = x-_left;
+				var b_top = y-_top;
+				$(this).children("#bigImg").css({left:b_left,top:b_top});
+			});
+			
+			var time=null;
+			var i=0;
+			function autoplay(){
+				time = setInterval(function(){
+					i--;
+					$("img").css("left",i+"px");
+					if(i==-window.)
+				},10);
+			};
+			autoplay();
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

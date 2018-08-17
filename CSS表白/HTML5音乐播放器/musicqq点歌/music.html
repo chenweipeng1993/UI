@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<meta name="keywords" content="关键词" />
+		<meta name="description" content="" />
+		<title>java开发qq音乐中国好声音KTV系统【腾讯音乐视频平台核心技术】</title>
+		<!--CSS层叠样式表,一件美丽的外衣一样-->
+		<style type="text/css">
+		*{margin: 0px;padding: 0px;}
+		/*body{background: url("");background-repeat: no-repeat;
+		background-position: top center; background-color: #DF5900;}*/
+		body{background: url("") #DF5900 no-repeat top center;font-size: 12px;
+		font-family: "微软雅黑";color: #666;}
+			/*以点开头的css样式称之为 类样式*/
+			.music{
+				width: 720px;
+				height: 470px;
+				background: #E8E8E8;
+				margin: 260px auto;
+			}
+			.music .m_lrc{width: 50%;height: 470px;background: #000;float: left;}
+			.music .m_lrc h2{
+				height: 60px;
+				background: #E8E8E8;
+				font-size: 20px;
+				text-align: center;
+				line-height: 60px;
+				font-weight: 500;
+			}
+			.music .m_lrc .m_con{
+				/*width: 360px;*/
+				height: 410px;
+				background: url("images/11.gif") no-repeat top center;
+				background-size: cover;
+				font-size: 14px;
+				line-height: 30px;
+				padding-left: 10px;
+				overflow: auto;
+			}
+			
+			.music .m_list{
+				width: 50%;
+				height: 470px;
+				background: #222222;
+				float: right;
+			}
+			
+			.music .m_list ul li{
+				/*border: 1px solid red;*/
+				border-bottom: 1px solid #000;
+				list-style: none;
+				line-height: 36px;
+			}
+			
+			.music .m_list ul li a{
+				font-size: 14px;
+				color: #FFFFFF;
+				text-decoration: none;
+				padding-left: 10px;
+			}
+			.sel{font-size: 18px;color: red;}
+			#lrc{display: none;}
+			
+			
+			/*滚动条的解决方案 S*/
+			::-webkit-scrollbar{width: 10px;height: 6px;background: #ccc;}
+			::-webkit-scrollbar-button{background-color: #e5e5e5;}
+			::-webkit-scrollbar-track{background: #999;}
+			::-webkit-scrollbar-track-piece{background: #ccc;}
+			::-webkit-scrollbar-thumb{background: #666;}
+			::-webkit-scrollbar-corner{background: #82afff;}
+			::-webkit-scrollbar-resizer{background: #ff0bee;}
+			scrollbar{-moz-appearance: none !important;background: rgb(0,255,0) !important;}
+			scrollbarbutton{-moz-appearance: none !important;background-color: rgb(0,0,255) !important;}
+			scrollbarbutton:hover{-moz-appearance: none !important;background-color: rgb(255,0,0) !important;}
+			/*滚动条的解决方案 E*/
+		</style>
+	</head>
+	<body>
+		<!--div：层，盒子，容器-->
+		<!--以class="自定义名称"成为类样式
+			1.见名知意
+			2.不能以数字开头
+			3.使用“—”，“_”命名
+		-->
+		<!--music S-->
+		<div class="music" style="">
+			<div class="m_lrc">
+				<h2 id="m_title">欢迎来到陈伟鹏的音乐KTVO(∩_∩)O~</h2>
+				<div class="m_con"></div>
+			</div>
+			<div class="m_list">
+				<ul>
+					<!--<li><a href="#" onclick="play('北京北京 - G.E.M.邓紫棋',this);">北京北京 - G.E.M.邓紫棋</a></li>
+					<li><a href="#" onclick="play('红豆 - 王菲',this);">红豆 - 王菲</a></li>
+					<li><a href="#" onclick="play('可念不可说 - 崔子格',this);">可念不可说 - 崔子格</a></li>
+					<li><a href="#" onclick="play('你不来我不老 (对唱版) - 高安,西单女孩',this);">你不来我不老 (对唱版) - 高安,西单女孩</a></li>
+					<li><a href="#" onclick="play('亲爱的别想我 - 祁隆,苏月',this);">亲爱的别想我 - 祁隆,苏月</a></li>
+					<li><a href="#" onclick="play('夏洛特烦恼 - 金志文',this);">夏洛特烦恼 - 金志文</a></li>
+					<li><a href="#" onclick="play('小苹果 - 筷子兄弟'',this);">小苹果 - 筷子兄弟</a></li>
+					<li><a href="#" onclick="play('小葡萄 - 正月十五',this);">小葡萄 - 正月十五</a></li>
+					<li><a href="#" onclick="play('咱们屯里的人 - 罗凯楠',this);">咱们屯里的人 - 罗凯楠</a></li>-->
+					
+					<li><a href="#" onclick="play(1,this);">北京北京 - G.E.M.邓紫棋</a></li>
+					<li><a href="#" onclick="play(2,this);">红豆 - 王菲</a></li>
+					<li><a href="#" onclick="play(3,this);">可念不可说 - 崔子格</a></li>
+					<li><a href="#" onclick="play(4,this);">你不来我不老 (对唱版) - 高安,西单女孩</a></li>
+					<li><a href="#" onclick="play(5,this);">亲爱的别想我 - 祁隆,苏月</a></li>
+					<li><a href="#" onclick="play(6,this);">夏洛特烦恼 - 金志文</a></li>
+					<li><a href="#" onclick="play(7,this);">小苹果 - 筷子兄弟</a></li>
+					<li><a href="#" onclick="play(8,this);">小葡萄 - 正月十五</a></li>
+					<li><a href="#" onclick="play(9,this);">咱们屯里的人 - 罗凯楠</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<textarea id="lrc"><!--根据歌词联动-->
+			[ti:]
+			[ar:]
+			[al:]
+			[offset:0]
+			
+			[00:00.00]红  豆
+			[00:03.86]作词：林 夕 作曲：柳重言
+			[00:06.75]演唱：王 菲
+			[00:10.45]
+			[00:16.66]还没好好地感受
+			[00:20.57]雪花绽放的气候
+			[00:24.72]我们一起颤抖
+			[00:28.08]会更明白  什么是温柔
+			[00:34.12]还没跟你牵着手
+			[00:37.81]走过荒芜的沙丘
+			[00:42.16]可能从此以后  学会珍惜
+			[00:47.52]天长和地久
+			[00:50.52]有时候  有时候
+			[00:54.94]我会相信一切有尽头
+			[00:59.09]相聚离开  都有时候
+			[01:03.50]没有什么会永垂不朽
+			[01:07.86]可是我  有时候
+			[01:12.11]宁愿选择留恋不放手
+			[01:16.46]等到风景都看透
+			[01:20.70]也许你会陪我  看细水长流
+			[01:29.36]
+			[01:42.33]还没为你把红豆
+			[01:46.47]熬成缠绵的伤口
+			[01:50.69]然后一起分享
+			[01:53.88]会更明白  相思的哀愁
+			[01:59.33]还没好好地感受
+			[02:03.38]醒著亲吻的温柔
+			[02:07.75]可能在我左右
+			[02:11.05]你才追求  孤独的自由
+			[02:18.90]有时候  有时候
+			[02:22.91]我会相信一切有尽头
+			[02:27.12]相聚离开  都有时候
+			[02:31.30]没有什么会永垂不朽
+			[02:35.72]可是我  有时候
+			[02:39.84]宁愿选择留恋不放手
+			[02:44.34]等到风景都看透
+			[02:48.57]也许你会陪我  看细水长流
+			[02:56.38]
+			[03:08.31]有时候  有时候
+			[03:11.97]我会相信一切有尽头
+			[03:16.33]相聚离开  都有时候
+			[03:20.64]没有什么会永垂不朽
+			[03:24.94]可是我  有时候
+			[03:29.15]宁愿选择留恋不放手
+			[03:33.45]等到风景都看透
+			[03:37.75]也许你会陪我  看细水长流
+			[03:49.01]
+
+			
+		</textarea>
+		<!--music E-->
+		<script type="text/javascript" src="js/jquery-2.1.3.js"></script>
+		<script type="text/javascript">
+			//创建一个mps的播放器
+			var audioDom = document.createElement("audio");
+			
+			
+			//点击播放
+			function play(name,obj){
+				//设置音乐地址
+				audioDom.src="mp3/"+name+".mp3";
+				//自动播放
+				//audioDom.autoplay="autoplay";
+//				audioDom.hidden="true";
+				// 联动歌名
+				$("#m_title").text($(obj).text()).addClass("sel");
+				
+				//获取歌词
+				var lrc = $("#lrc").val();
+				
+				//把时间和歌词分离出来
+				var lrcArr = lrc.split("[");
+				console.log("-------------"+lrcArr);
+				var html ="";
+				for(var i=0;i<lrcArr.length;i++){
+					//第二次分割“]”
+					var arr = lrcArr[i].split("]");
+					console.log(arr);
+					//取到歌词
+					var message = arr[1];
+					if(message){//如果歌词存在
+						html+="<div>"+message+"</div>";
+						
+					}
+				}
+				$(".m_con").html(html);
+				
+			}
+		</script>
+	</body>
+</html>

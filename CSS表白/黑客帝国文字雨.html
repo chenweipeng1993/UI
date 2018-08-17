@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>流星雨文字</title>
+		<!--css,js-->
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			html{overflow: hidden;}/*//超出部分不显示*/
+		</style>
+	</head>
+	<body>
+		<!--<div style="font-size: 16px;"></div>-->
+		
+		<canvas id="canvas"></canvas>
+		<!--//问题隐藏--><!--style="display: none;"-->
+		<embed src="mp3/1.mp3"  hidden="true" ></embed>
+			
+		<script type="text/javascript">
+			window.onload=function(){
+				//可视区域
+				var s = window.screen;
+				//屏幕的宽度和高度
+				var w = s.width;
+				var h = s.height;
+				//alert(w+":"+h);
+				
+				//获取对象，拿到画布
+				var canvas = document.getElementById("canvas");
+				//获取权限，拿到上下文
+				var ctx = canvas.getContext("2d");
+				canvas.width = w;
+				canvas.height = h;
+				
+				var str = "喜洋洋，陈伟鹏是大帅比";//要绘画的字体
+				var fontSize = 12;
+				//计算整个区域能够铺开多少列-宽度除以字体大小
+				var cols = Math.floor(w/fontSize);//向下取整
+				//alert(cols);
+				//定义一个数组存放所有的y坐标
+				var drops = [];
+				//初始化y坐标全为0
+				for(var i=0;i<cols;i++){
+					drops.push(Math.floor(Math.random()*-h));//0
+				}
+				
+				//绘画的方法
+				function draw(){
+					//通过透明色来实现渐变的过程
+					ctx.fillStyle = "rgba(0,0,0,0.05)";
+					//填充整个页面
+					ctx.fillRect(0,0,w,h);
+					//绘画文字
+					//ctx.fillText(str,250,250);
+					ctx.fillStyle = ranColor();
+					ctx.font="600 "+fontSize+"px 微软雅黑";//字体粗细、字体大小
+					for(var i=0;i<cols;i++){
+						//取随机文字
+						var index = Math.floor(Math.random()*str.length);
+//						alert(index);
+						//拿到坐标
+						var x = i*fontSize;
+						var y = drops[i]*fontSize;
+						//console.log(x+"====="+y);
+						//拿到坐标绘画文字
+						ctx.fillText(str[index],x,y);
+						if(y>canvas.height && Math.random()>0.99){
+							//y等于0
+							drops[i]=0;
+						}
+						drops[i]++;//循环一次改变位置，也就是向下
+					}
+				};
+				//计时器
+				draw();
+				setInterval(draw,33);
+			};
+			
+			//取随机色
+			function ranColor(){
+				var r = Math.floor(Math.random()*226);
+				var g = Math.floor(Math.random()*226);
+				var b = Math.floor(Math.random()*226);
+				return "rgb("+r+","+g+","+b+")"
+			}
+		</script>
+	</body>
+</html>

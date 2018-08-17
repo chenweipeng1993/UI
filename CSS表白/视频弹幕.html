@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="keywords" content="关键字，关键词"/>
+		<meta name="description" content="描述文字" />
+		<title>视频弹幕-陈伟鹏O(∩_∩)O哈哈~</title>
+		<link rel="stylesheet" href="animate-动画/animate.css" />
+		<style type="text/css">
+			*{margin: 0px;padding: 0px;}
+			body{background: url("img/27.jpg");background-size: cover; }
+			h1{font-family:"楷体";text-align: center; line-height: 50px; color: #ffffff; text-shadow: 3px 3px 1px #8C6994;}
+			/*S vdieo*/
+			.video{width:800px ;height: 560px;background: #CCEEEE; margin: 0 auto;
+			position: relative;/*定位的第一步相对定位*/
+			}
+			.video .dm{width: 100%;height: 92%;
+			/*opacity: 0.6;*//*不能用会导致这个div里面的字也看不清，此时可以用rgba*/
+			background: rgba(0,0,0,0.2);/*#2db555问题是盖住了视频，当设置模糊程度为0的时候，弹幕的字也看不见了-所有要用rgba（）*/
+			position: absolute;top: 0;left: 0;/*定位的第一步绝对定位-必须要有top和left*/
+			display: none;overflow: hidden;/*出了弹幕就隐藏*/}
+			.video .dm .dm_show{font-size: 20px;color: #FFFFFF;font-weight: 600;/*设置文本的粗细。*/
+			position: relative;}
+			.video .dm .dm_show div{position: absolute;top:20px;}
+			.video .start_dm{width: 62px;height: 30px; background: #681AAF;display: block;text-decoration: none;
+			font-size: 16px; font-family: "楷体";color: #fff;font-weight: 600;text-align: center; line-height: 30px;
+			position: absolute;bottom: 6px;right: 132px;
+			border-radius: 4px;/*设置圆角*/
+			box-shadow: 1px 1px 5px #000;/*阴影*/transform: 0.5s;}
+			.video .start_dm:hover{background: #E110EF; color: #ff9428;transform: 0.5s;}
+			.video .send{width: 100%;height: 40px; /*border: 2px solid red;*/}
+			.video .send .input_text{width: 90%; height: 40px;}
+			.video .send .btn{width: 75px;height: 40px; background: #681AAF;display:block; text-decoration: none;
+			font-size: 16px; font-family: "楷体";color: #fff;font-weight: 600;text-align: center; line-height: 40px;
+			float: right;border-radius: 4px;box-shadow: 1px 1px 5px #000;/*阴影*/margin-top:2px ;
+			-webkit-animation: play 0.3s infinite;}
+			.video .send .btn:hover{-webkit-animation-play-state: paused; background: #E110EF;color: #FF9428;}
+			
+			@-webkit-keyframes play{
+				from{transform: scale(0.9);}/*缩放*/
+				to{transform: scale(1.1)}
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+        	1.数字越大，文字越小，权重值越低
+        	2.h1在整个页面中只能出现一次
+        -->
+		<!--S h1-->
+		<h1>胖神的视频弹幕-就是这么任性</h1>
+		<!--E h1-->
+		<!--S video-->
+		<div class="video">
+			<!--http://player.youku.com/player.php/sid/XMTM3MDAzNjc4OA==/v.swf-->
+			<!--<embed src="http://player.youku.com/player.php/sid/XMTM3MDAzNjc4OA==/v.swf" 
+				allowFullScreen="true" quality="high" width="800" height="560" 
+				align="middle" allowScriptAccess="always" type="application/x-shockwave-flash">
+			</embed>-->
+			<embed src="http://player.youku.com/player.php/sid/XMTQ1ODYyODYwNA==/v.swf" 
+				allowFullScreen="true" quality="high" width="800" height="560" align="middle" 
+				allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+			<a class="start_dm" href="javascript:void(0)">弹幕</a>
+			<div class="dm">
+				<div class="dm_show">
+					<div>sdas1111111111111111</div>
+					<!--<div>我是天才</div>-->
+				</div>
+			</div>
+			
+			<!--发送区域-->
+			<div class="send">
+				<input type="text" class="input_text" /><a class="btn" href="javascript:void(0)">发表</a>
+			</div>
+		</div>
+		<!--E video-->
+		<script type="text/javascript" src="js/jquery-2.1.3.js"></script>
+		<script type="text/javascript">
+//		alert($);//$是一个函数
+			$(function(){
+				//点击弹幕按钮
+				$(".start_dm").click(function(){
+//					alert(0);
+					$(".dm").toggle(); 
+					init_screent();
+				});
+				//点击发表按钮
+				$(".btn").click(function(){
+//					alert(1);
+					var content = $(".input_text").val();
+//					alert(content);
+					var _label = $("<div class='animated flip'>"+content+"<div>");
+					$(".dm_show").append(_label);
+					init_screent();
+				});
+				function init_screent(){
+					var _top=0;
+					$(".dm_show").find("div").each(function(){
+						//设置文字位置
+						var _left = $(".dm").width()-$(this).width()+2;
+//						alert(_left);	
+						var _height = $(".dm").height();
+						if(_top>_height-100){
+							_top=0;
+						}
+						_top+=20;
+						$(this).css({left:_left,top:_top,color:Randomcolor()});
+						$(this).animate({left:"-"+_left+"px"},5000,function(){
+							$(this).remove();
+						});
+					});
+				}
+			});
+			
+			//随机色
+			function Randomcolor(){
+				var r = Math.floor(Math.random()*256);
+				var g = Math.floor(Math.random()*256);
+				var b = Math.floor(Math.random()*256);
+				return "rgb("+r+","+g+","+b+")";
+			}
+		</script>
+	</body>
+</html>

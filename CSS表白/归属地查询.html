@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="keywords" content="关键词，关键字" />
+		<meta name="description" content="" />
+		<title>归属地查询</title>
+		<style type="text/css">
+			*{padding: 0px;margin: 0px;}
+			body{background: url("img/bg.jpg");background-size: cover; font-size: 12px; font-family: "楷体";color: #ccc;}
+			.login{width: 600px;height: 300px;border: 1px solid red;margin: 100px auto;}
+			/*text-shaadow:第一个值水平方向 第二个值垂直方向 第三个字模糊 程度 模糊的颜色*/
+			h1{text-align: center;color: #E60BD4; font-size: 26px; text-shadow: 5px 5px 10px #111;}
+			.login .l_query{width: 400px; height: 50px; background-color: #7B15C7; 
+			line-height: 50px;border-radius: 6px;margin: 20px auto; font-size: 20px; text-align: center;}
+			.login .l_content{width: 420px; text-align: center;margin: 0 auto;}
+			/*text-indent:就是在文本框左端空出几个像素*/
+			.login .l_content .l_text{width: 300px; height: 35px; text-indent: 10px;color: #321B5F;}
+			.login .l_sub{width: 300px; height: 35px; margin: 20px auto;}
+			/*outline: none;去边框点击的蓝色效果 border: 0;去边框*/
+			.login .l_sub .l_btn{width: 300px; height: 35px; line-height: 35px; 
+			background-color: #CBCBCA; border: 0; outline: none;}
+		</style>
+	</head>
+	<body>
+		<form action="" method="post">
+			<div class="login">
+				<h1>手机归属地查询系统</h1>
+				<div class="l_query"><span>查询入口</span></div>
+				<div class="l_content"><input type="text" class="l_text"></div>
+				<div class="l_sub">
+					<input type="submit" class="l_btn" value="查询归属地"/>
+				</div>
+			</div>
+		</form>
+	</body>
+</html>

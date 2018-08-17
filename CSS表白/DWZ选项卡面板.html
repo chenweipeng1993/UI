@@ -1,0 +1,67 @@
+<html>
+<head>
+<style type="text/css">
+.table a:LINK {
+	color: red;
+}
+
+.table a:HOVER {
+	position: 1px;
+}
+
+#soOrderDetTable {
+	width: 300%;
+	border-collapse: separate;
+	border-spacing: 2px;
+}
+
+#soOrderDetTable .td1 {
+	text-align: right;
+}
+
+#soOrderDetTable td {
+	text-align: center;
+}
+
+.divcontent {
+overflow:yes;
+height: 700px;
+width: 1200px;
+border:solid 1px red;
+}
+
+.scrollTable{
+{
+min-width: 760px;width: expression(document.body.clientWidth < 760? "760px": "100%" )/*最小宽度设置*/;width:100%;
+}
+</style>
+
+</head>
+<body>
+	<div class="pageFormContent" >
+		<div class="tabs" currentIndex="0" eventType="onclick" id="orderIndex">
+			<div class="tabsHeader">
+				<div class="tabsHeaderContent">
+					<ul>
+						<li><a id="tab1" href="javascript:;"><span
+								style="width: 100px; text-align: center;" onclick="spanclick(1)">销售合同</span></a></li>
+						<li><a id="tab2" href="javascript:;"><span
+								style="width: 100px; text-align: center;" onclick="spanclick(2)">合同明细</span></a></li>
+						<li><a id="tab3" href="javascript:;"><span
+								style="width: 100px; text-align: center;" onclick="spanclick(3)">合同条约</span></a></li>
+	
+					</ul>
+				</div>
+			</div>
+			<div class="tabsContent">
+				<div style="height: 480px;"></div>
+				<div style="height: 480px;"></div>
+				<div style="height: 480px;"></div>
+			</div>	
+		</div>
+	</div>
+</body>
+</html>
+
+
+

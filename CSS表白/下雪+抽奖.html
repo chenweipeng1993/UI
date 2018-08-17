@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<meta name="keywords" content="关键字，关键词"/>
+		<meta name="description" content="描述语句" />
+		<title>抽奖揭秘+下雪-陈伟鹏O(∩_∩)O哈哈~</title>
+		<!--CSS 层叠样式表-->
+		<style type="text/css">
+			*{margin:0px;padding: 0px;}
+			body{background: #3ec6df;}
+			/*S header*/
+			#header{
+				width: 100%;
+				height: 315px;
+				background: url("snow下雪/images/snow-bg.png")repeat-y center,url("snow下雪/images/header-bg.png");/*不平铺*/
+				-webkit-animation: auto 10s linear infinite;/*动画名--时间间隔--匀速执行--不停止*/
+			}
+			#header ul{
+				width: 960px;
+				height: 315px;
+				/*border: 2px solid red;*/
+				margin: 0 auto;
+				list-style: none;
+				position: relative;
+			}
+			#header ul li{
+				width: 112px;
+				height: 137px;
+				/*border: 1px solid red;*/
+				background: url("snow下雪/images/tree.png");
+				position: absolute;
+				-webkit-animation: play 2s linear;
+			}
+			#header ul li:nth-child(1){
+				top:160px;
+				left: 35px;
+				-webkit-animation-duration: 0.6s;/*动画的持续的时间*/
+			}
+			#header ul li:nth-child(2){
+				top:180px;
+				left: 200px;
+				-webkit-animation-duration: 0.8s;
+			}
+			#header ul li:nth-child(3){
+				top:130px;
+				left: 350px;
+				-webkit-animation-duration: 1.3s;
+			}
+			#header ul li:nth-child(4){
+				width: 115px;
+				height: 103px;
+				background: url("snow下雪/images/ice.png");
+				top: 200px;
+				right: 370px;
+				-webkit-animation-duration: 1.7s;
+			}
+			#header ul li:nth-child(5){
+				top: 150px;
+				right: 270px;
+				-webkit-animation-duration: 0.9s;
+			}
+			#header ul li:nth-child(6){
+				top: 170px;
+				right: 130px;
+				-webkit-animation-duration: 0.6s;
+			}
+			
+			@-webkit-keyframes auto{
+				from{background-position: center 0, 0 0;}/*水平方向居中，竖直方向0,第二个背景不动*/				
+				to{background-position: center 885px,0 0;}
+			}
+			
+			@-webkit-keyframes play{
+				from{transform: translate(0,-315px);}
+				to{transform: translate(0,0);}
+			}
+			/*E header*/
+			
+			.bg{
+				width: 309px;
+				height: 309px;
+				/*border: 1px solid red;*/
+				margin: 20px auto;
+				background: url("snow下雪/images/1.png");
+				background-size: cover;
+				position: relative;
+			}
+			.bg .zj{
+				position: absolute;
+				top: 71px;
+				left: 71px;
+				cursor: pointer;/*鼠标划上去就变成小手*/
+			}
+		</style>
+	</head>
+	<body>
+		<!--S header-->
+		<div id="header">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<!--E header-->
+		
+		<div class="bg">
+			<div class="zj">
+				<img id="pointBtn" src="snow下雪/images/point.png" width="170px" height="170px"/>
+			</div>
+		</div>
+		<embed src="snow下雪/mp3/1.mp3" hidden="true"></embed>
+		<script type="text/javascript" src="snow下雪/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="snow下雪/js/jQueryRotate.2.2.js"></script>
+		<script type="text/javascript">
+//			window.onload=function(){//当前页面里面所有的内容--只能出现一次
+//				
+//			}
+			
+			$(document).ready(function(){//dom节点加载完就好了-可以出现好多次
+//				$(".bg .zj").click(function(){
+//					$("#pointBtn").rotate({
+//						bind:{}
+//					});//引用了上面的那个插件才能用
+//					
+//				});
+				$("#pointBtn").rotate({//引用了上面的那个插件才能用
+					bind:{click:function(){
+//						alert(1);
+						var data = [1,2,3,0];
+						var result = Math.floor(Math.random()*data.length);
+//						alert(data[result]);
+						switch(data[result]){
+							case 1:
+							rotateDo(160,'恭喜抽中一等奖，小袁之吻')
+							break;
+							case 2:
+							rotateDo(260,'恭喜抽中二等奖，小陈之吻')
+							break;
+							case 3:
+							rotateDo(30,'恭喜抽中三等奖，梦中之吻')
+							break;
+							case 0:
+							rotateDo(350,'很遗憾，没中奖')
+							break;
+						}
+					}}
+				});
+			});
+			
+//			$(function(){
+//				
+//			});
+			var rotateDo = function(angel,text){
+				$("#pointBtn").stopRotate();
+				$("#pointBtn").rotate(0);
+				
+				$("#pointBtn").rotate({					
+					angel:0,
+					animateTo:angel+(360*4),
+					duration:5000,//*执行5000毫秒*/
+					callback:function(){alert(text);}
+				});
+			}
+		</script>
+	</body>
+</html>
