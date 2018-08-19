@@ -10,7 +10,7 @@ import java.util.HashMap;
 @Controller
 public class QiXiController {
     /**
-     * http://localhost:8080/qixi/biaobai
+     * http://localhost:8888/qixi/biaobai
      * @param map
      * @return
      */

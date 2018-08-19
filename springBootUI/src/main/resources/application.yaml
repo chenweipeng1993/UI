@@ -5,3 +5,4 @@ spring:
 server:
   servlet:
     context-path: /qixi #设置上下文
+  port: 8888 #设置访问端口号
